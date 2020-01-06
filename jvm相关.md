@@ -4,7 +4,7 @@
 |      |      |      |
 |      |      |      |
 
-# ![images/genman.jpg]()
+# <img src="images\genman.jpg" style="zoom:50%;" />
 
 
 
