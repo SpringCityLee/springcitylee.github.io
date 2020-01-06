@@ -4,7 +4,7 @@
 |      |      |      |
 |      |      |      |
 
-# ![](C:\Users\Administrator\git\springcitylee.github.io\images\genman.jpg)
+# ![images/genman.jpg]()
 
 
 
