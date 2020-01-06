@@ -1,8 +1,8 @@
-| haha | hehe | gaga |
-| ---- | ---- | :--: |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+| haha      | hehe      |   gaga    |
+| --------- | --------- | :-------: |
+| few       | few       |    few    |
+| few       | few       |    few    |
+| fewfewfew | fewfewfew | fewwfefew |
 
 # <img src="images\genman.jpg" style="zoom:50%;" />
 
