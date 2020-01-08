@@ -1,0 +1,1670 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>深入理解ReentrantLock · springcity</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="ruheng">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-local-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ArrayBlockingQueue.html" />
+    
+    
+    <link rel="prev" href="AbstractQueuedSynchronizer.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"LRH1993/android_interview","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://springcity.club" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        <li class="header">前言</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">日志</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../note/202001081.html">
+            
+                <a href="../../note/202001081.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    磁盘挂载共享文件服务安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../note/20200108.html">
+            
+                <a href="../../note/20200108.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    tomcat对特殊字符过滤的规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../basis.html">
+            
+                <a href="../basis.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../basis/Collections-Framework.html">
+            
+                <a href="../basis/Collections-Framework.html">
+            
+                    
+                        <b>3.1.1.</b>
+                    
+                    Java集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../basis/arraylist.html">
+            
+                <a href="../basis/arraylist.html">
+            
+                    
+                        <b>3.1.2.</b>
+                    
+                    Java集合——ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../basis/linkedlist.html">
+            
+                <a href="../basis/linkedlist.html">
+            
+                    
+                        <b>3.1.3.</b>
+                    
+                    Java集合——LinkedList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../basis/hashmap.html">
+            
+                <a href="../basis/hashmap.html">
+            
+                    
+                        <b>3.1.4.</b>
+                    
+                    Java集合——HashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="../basis/treemap.html">
+            
+                <a href="../basis/treemap.html">
+            
+                    
+                        <b>3.1.5.</b>
+                    
+                    Java集合——TreeMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="../basis/LinkedHashMap.html">
+            
+                <a href="../basis/LinkedHashMap.html">
+            
+                    
+                        <b>3.1.6.</b>
+                    
+                    Java集合——LinkedHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="../basis/genericity.html">
+            
+                <a href="../basis/genericity.html">
+            
+                    
+                        <b>3.1.7.</b>
+                    
+                    Java泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="../basis/reflection1.html">
+            
+                <a href="../basis/reflection1.html">
+            
+                    
+                        <b>3.1.8.</b>
+                    
+                    Java反射(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.9" data-path="../basis/reflection2.html">
+            
+                <a href="../basis/reflection2.html">
+            
+                    
+                        <b>3.1.9.</b>
+                    
+                    Java反射(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.10" data-path="../basis/reflection3.html">
+            
+                <a href="../basis/reflection3.html">
+            
+                    
+                        <b>3.1.10.</b>
+                    
+                    Java反射(三)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.11" data-path="../basis/annotation.html">
+            
+                <a href="../basis/annotation.html">
+            
+                    
+                        <b>3.1.11.</b>
+                    
+                    Java注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.12" data-path="../basis/java-io1.html">
+            
+                <a href="../basis/java-io1.html">
+            
+                    
+                        <b>3.1.12.</b>
+                    
+                    Java IO(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.13" data-path="../basis/java-io2.html">
+            
+                <a href="../basis/java-io2.html">
+            
+                    
+                        <b>3.1.13.</b>
+                    
+                    Java IO(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.14" data-path="../basis/randomaccessfile.html">
+            
+                <a href="../basis/randomaccessfile.html">
+            
+                    
+                        <b>3.1.14.</b>
+                    
+                    RandomAccessFile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.15" data-path="../basis/java-nio.html">
+            
+                <a href="../basis/java-nio.html">
+            
+                    
+                        <b>3.1.15.</b>
+                    
+                    Java NIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.16" data-path="../basis/throwable.html">
+            
+                <a href="../basis/throwable.html">
+            
+                    
+                        <b>3.1.16.</b>
+                    
+                    Java异常详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.17" data-path="../basis/abstract_interface.html">
+            
+                <a href="../basis/abstract_interface.html">
+            
+                    
+                        <b>3.1.17.</b>
+                    
+                    Java抽象类和接口的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.18" data-path="../basis/copy.html">
+            
+                <a href="../basis/copy.html">
+            
+                    
+                        <b>3.1.18.</b>
+                    
+                    Java深拷贝和浅拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.19" data-path="../basis/transient.html">
+            
+                <a href="../basis/transient.html">
+            
+                    
+                        <b>3.1.19.</b>
+                    
+                    Java transient关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.20" data-path="../basis/finally-return.html">
+            
+                <a href="../basis/finally-return.html">
+            
+                    
+                        <b>3.1.20.</b>
+                    
+                    Java finally与return执行顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.21" data-path="../basis/java-8.html">
+            
+                <a href="../basis/java-8.html">
+            
+                    
+                        <b>3.1.21.</b>
+                    
+                    Java 8 新特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../concurrence.html">
+            
+                <a href="../concurrence.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Java并发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="CreateThread.html">
+            
+                <a href="CreateThread.html">
+            
+                    
+                        <b>3.2.1.</b>
+                    
+                    Java创建线程的三种方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="thread-pool.html">
+            
+                <a href="thread-pool.html">
+            
+                    
+                        <b>3.2.2.</b>
+                    
+                    Java线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="deadlock.html">
+            
+                <a href="deadlock.html">
+            
+                    
+                        <b>3.2.3.</b>
+                    
+                    死锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="synchronized-reentrantlock.html">
+            
+                <a href="synchronized-reentrantlock.html">
+            
+                    
+                        <b>3.2.4.</b>
+                    
+                    Synchronized/ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="producer-consumer.html">
+            
+                <a href="producer-consumer.html">
+            
+                    
+                        <b>3.2.5.</b>
+                    
+                    生产者/消费者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="volatile.html">
+            
+                <a href="volatile.html">
+            
+                    
+                        <b>3.2.6.</b>
+                    
+                    volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="CAS.html">
+            
+                <a href="CAS.html">
+            
+                    
+                        <b>3.2.7.</b>
+                    
+                    CAS原子操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="AbstractQueuedSynchronizer.html">
+            
+                <a href="AbstractQueuedSynchronizer.html">
+            
+                    
+                        <b>3.2.8.</b>
+                    
+                    AbstractQueuedSynchronizer详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2.9" data-path="ReentrantLock.html">
+            
+                <a href="ReentrantLock.html">
+            
+                    
+                        <b>3.2.9.</b>
+                    
+                    深入理解ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.10" data-path="ArrayBlockingQueue.html">
+            
+                <a href="ArrayBlockingQueue.html">
+            
+                    
+                        <b>3.2.10.</b>
+                    
+                    Java并发集合——ArrayBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.11" data-path="LinkedBlockingQueue.html">
+            
+                <a href="LinkedBlockingQueue.html">
+            
+                    
+                        <b>3.2.11.</b>
+                    
+                    Java并发集合——LinkedBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.12" data-path="ConcurrentHashMap.html">
+            
+                <a href="ConcurrentHashMap.html">
+            
+                    
+                        <b>3.2.12.</b>
+                    
+                    Java并发集合——ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../virtual-machine.html">
+            
+                <a href="../virtual-machine.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Java虚拟机
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../virtual-machine/object.html">
+            
+                <a href="../virtual-machine/object.html">
+            
+                    
+                        <b>3.3.1.</b>
+                    
+                    对象的创建、内存布局和访问定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../virtual-machine/memory.html">
+            
+                <a href="../virtual-machine/memory.html">
+            
+                    
+                        <b>3.3.2.</b>
+                    
+                    Java内存区域与内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../virtual-machine/classloader.html">
+            
+                <a href="../virtual-machine/classloader.html">
+            
+                    
+                        <b>3.3.3.</b>
+                    
+                    Java类加载机制及类加载器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../virtual-machine/Garbage-Collector.html">
+            
+                <a href="../virtual-machine/Garbage-Collector.html">
+            
+                    
+                        <b>3.3.4.</b>
+                    
+                    JVM中垃圾收集算法及垃圾收集器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../virtual-machine/life-cycle.html">
+            
+                <a href="../virtual-machine/life-cycle.html">
+            
+                    
+                        <b>3.3.5.</b>
+                    
+                    JVM怎么判断对象是否已死？
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../design-mode/Builder-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    创建型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                    
+                        <b>4.1.1.</b>
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                    
+                        <b>4.1.2.</b>
+                    
+                    工厂方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                    
+                        <b>4.1.3.</b>
+                    
+                    抽象工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                    
+                        <b>4.1.4.</b>
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.5.</b>
+                    
+                    建造者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../design-mode/Structural-Patterns.html">
+            
+                <a href="../../design-mode/Structural-Patterns.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    结构型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                    
+                        <b>4.2.1.</b>
+                    
+                    适配器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                    
+                        <b>4.2.2.</b>
+                    
+                    外观模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                    
+                        <b>4.2.3.</b>
+                    
+                    装饰者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                    
+                        <b>4.2.4.</b>
+                    
+                    代理模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../../design-mode/Behavioral-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    行为型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="../../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                    
+                        <b>4.3.1.</b>
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="../../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                    
+                        <b>4.3.2.</b>
+                    
+                    迭代器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="../../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                    
+                        <b>4.3.3.</b>
+                    
+                    观察者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.4" data-path="../../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                    
+                        <b>4.3.4.</b>
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.5" data-path="../../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                    
+                        <b>4.3.5.</b>
+                    
+                    模板方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">计算机网络</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../computer-networks/tcpip.html">
+            
+                <a href="../../computer-networks/tcpip.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    TCP/IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../computer-networks/http.html">
+            
+                <a href="../../computer-networks/http.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    HTTP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../computer-networks/https.html">
+            
+                <a href="../../computer-networks/https.html">
+            
+                    
+                        <b>5.3.</b>
+                    
+                    HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >深入理解ReentrantLock</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x524D;&#x8A00;"><a name="&#x524D;&#x8A00;" class="plugin-anchor" href="#&#x524D;&#x8A00;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x524D;&#x8A00;</h2>
+<p>java5&#x4E4B;&#x540E;&#xFF0C;&#x5E76;&#x53D1;&#x5305;&#x4E2D;&#x65B0;&#x589E;&#x4E86;Lock&#x63A5;&#x53E3;&#xFF08;&#x4EE5;&#x53CA;&#x76F8;&#x5173;&#x5B9E;&#x73B0;&#x7C7B;&#xFF09;&#x7528;&#x6765;&#x5B9E;&#x73B0;&#x9501;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E0E;synchronized&#x5173;&#x952E;&#x5B57;&#x7C7B;&#x4F3C;&#x7684;&#x540C;&#x6B65;&#x529F;&#x80FD;&#x3002;&#x65E2;&#x7136;&#x6709;&#x4E86;synchronized&#x8FD9;&#x79CD;&#x5185;&#x7F6E;&#x7684;&#x9501;&#x529F;&#x80FD;&#xFF0C;&#x4E3A;&#x4F55;&#x8981;&#x65B0;&#x589E;Lock&#x63A5;&#x53E3;&#xFF1F;&#x5148;&#x6765;&#x60F3;&#x8C61;&#x4E00;&#x4E2A;&#x573A;&#x666F;&#xFF1A;&#x624B;&#x628A;&#x624B;&#x7684;&#x8FDB;&#x884C;&#x9501;&#x83B7;&#x53D6;&#x548C;&#x91CA;&#x653E;&#xFF0C;&#x5148;&#x83B7;&#x5F97;&#x9501;A&#xFF0C;&#x7136;&#x540E;&#x518D;&#x83B7;&#x53D6;&#x9501;B&#xFF0C;&#x5F53;&#x83B7;&#x53D6;&#x9501;B&#x540E;&#x91CA;&#x653E;&#x9501;A&#x540C;&#x65F6;&#x83B7;&#x53D6;&#x9501;C&#xFF0C;&#x5F53;&#x9501;C&#x83B7;&#x53D6;&#x540E;&#xFF0C;&#x518D;&#x91CA;&#x653E;&#x9501;B&#x540C;&#x65F6;&#x83B7;&#x53D6;&#x9501;D&#xFF0C;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#xFF0C;&#x8FD9;&#x79CD;&#x573A;&#x666F;&#x4E0B;&#xFF0C;synchronized&#x5173;&#x952E;&#x5B57;&#x5C31;&#x4E0D;&#x90A3;&#x4E48;&#x5BB9;&#x6613;&#x5B9E;&#x73B0;&#x4E86;&#xFF0C;&#x800C;&#x4F7F;&#x7528;Lock&#x5374;&#x663E;&#x5F97;&#x5BB9;&#x6613;&#x8BB8;&#x591A;&#x3002;</p>
+<h2 id="&#x5B9A;&#x4E49;"><a name="&#x5B9A;&#x4E49;" class="plugin-anchor" href="#&#x5B9A;&#x4E49;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9A;&#x4E49;</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReentrantLock</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Lock</span>, <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sync sync;
+    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractQueuedSynchronizer</span> </span>{
+
+        <span class="hljs-comment">/**
+         * Performs {<span class="hljs-doctag">@link</span> Lock#lock}. The main reason for subclassing
+         * is to allow fast path for nonfair version.
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span></span>;
+
+        <span class="hljs-comment">/**
+         * Performs non-fair tryLock.  tryAcquire is implemented in
+         * subclasses, but both need nonfair try for trylock method.
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">nonfairTryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+            <span class="hljs-keyword">final</span> Thread current = Thread.currentThread();
+            <span class="hljs-keyword">int</span> c = getState();
+            <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">if</span> (compareAndSetState(<span class="hljs-number">0</span>, acquires)) {
+                    setExclusiveOwnerThread(current);
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+                }
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) {
+                <span class="hljs-keyword">int</span> nextc = c + acquires;
+                <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>) <span class="hljs-comment">// overflow</span>
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&quot;Maximum lock count exceeded&quot;</span>);
+                setState(nextc);
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryRelease</span><span class="hljs-params">(<span class="hljs-keyword">int</span> releases)</span> </span>{
+            <span class="hljs-keyword">int</span> c = getState() - releases;
+            <span class="hljs-keyword">if</span> (Thread.currentThread() != getExclusiveOwnerThread())
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalMonitorStateException();
+            <span class="hljs-keyword">boolean</span> free = <span class="hljs-keyword">false</span>;
+            <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) {
+                free = <span class="hljs-keyword">true</span>;
+                setExclusiveOwnerThread(<span class="hljs-keyword">null</span>);
+            }
+            setState(c);
+            <span class="hljs-keyword">return</span> free;
+        }
+
+    }
+    <span class="hljs-comment">//&#x9ED8;&#x8BA4;&#x975E;&#x516C;&#x5E73;&#x9501;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">()</span> </span>{
+        sync = <span class="hljs-keyword">new</span> NonfairSync();
+    }
+    <span class="hljs-comment">//fair&#x4E3A;false&#x65F6;&#xFF0C;&#x91C7;&#x7528;&#x516C;&#x5E73;&#x9501;&#x7B56;&#x7565;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> fair)</span> </span>{    
+        sync = fair ? <span class="hljs-keyword">new</span> FairSync() : <span class="hljs-keyword">new</span> NonfairSync();
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>{
+        sync.lock();
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">()</span> </span>{    sync.release(<span class="hljs-number">1</span>);}
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Condition <span class="hljs-title">newCondition</span><span class="hljs-params">()</span> </span>{    
+        <span class="hljs-keyword">return</span> sync.newCondition();
+    }
+    ...
+}
+</code></pre>
+<p>&#x4ECE;&#x6E90;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;Doug lea&#x5DE7;&#x5999;&#x7684;&#x91C7;&#x7528;&#x7EC4;&#x5408;&#x6A21;&#x5F0F;&#x628A;lock&#x548C;unlock&#x65B9;&#x6CD5;&#x59D4;&#x6258;&#x7ED9;&#x540C;&#x6B65;&#x5668;&#x5B8C;&#x6210;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;&#x65B9;&#x5F0F;"><a name="&#x4F7F;&#x7528;&#x65B9;&#x5F0F;" class="plugin-anchor" href="#&#x4F7F;&#x7528;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;&#x65B9;&#x5F0F;</h2>
+<pre><code class="lang-java">Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();
+Condition condition = lock.newCondition();
+lock.lock();
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">while</span>(&#x6761;&#x4EF6;&#x5224;&#x65AD;&#x8868;&#x8FBE;&#x5F0F;) {
+      condition.wait();
+  }
+ <span class="hljs-comment">// &#x5904;&#x7406;&#x903B;&#x8F91;</span>
+} <span class="hljs-keyword">finally</span> {
+    lock.unlock();
+}
+</code></pre>
+<p>&#x9700;&#x8981;&#x663E;&#x793A;&#x7684;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x5E76;&#x5728;finally&#x5757;&#x4E2D;&#x663E;&#x793A;&#x7684;&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x4FDD;&#x8BC1;&#x5728;&#x83B7;&#x53D6;&#x5230;&#x9501;&#x4E4B;&#x540E;&#xFF0C;&#x6700;&#x7EC8;&#x80FD;&#x591F;&#x88AB;&#x91CA;&#x653E;&#x3002;</p>
+<h2 id="&#x975E;&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;"><a name="&#x975E;&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#&#x975E;&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x975E;&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;</h2>
+<p>&#x5728;&#x975E;&#x516C;&#x5E73;&#x9501;&#x4E2D;&#xFF0C;&#x6BCF;&#x5F53;&#x7EBF;&#x7A0B;&#x6267;&#x884C;lock&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x90FD;&#x5C1D;&#x8BD5;&#x5229;&#x7528;CAS&#x628A;state&#x4ECE;0&#x8BBE;&#x7F6E;&#x4E3A;1&#x3002;</p>
+<p>&#x90A3;&#x4E48;Doug lea&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x9501;&#x7684;&#x975E;&#x516C;&#x5E73;&#x6027;&#x5462;&#xFF1F;
+&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x573A;&#x666F;&#xFF1A;</p>
+<ol>
+<li>&#x6301;&#x6709;&#x9501;&#x7684;&#x7EBF;&#x7A0B;A&#x6B63;&#x5728;running&#xFF0C;&#x961F;&#x5217;&#x4E2D;&#x6709;&#x7EBF;&#x7A0B;BCDEF&#x88AB;&#x6302;&#x8D77;&#x5E76;&#x7B49;&#x5F85;&#x88AB;&#x5524;&#x9192;&#xFF1B;</li>
+<li>&#x5728;&#x67D0;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x70B9;&#xFF0C;&#x7EBF;&#x7A0B;A&#x6267;&#x884C;unlock&#xFF0C;&#x5524;&#x9192;&#x7EBF;&#x7A0B;B&#xFF1B;</li>
+<li>&#x540C;&#x65F6;&#x7EBF;&#x7A0B;G&#x6267;&#x884C;lock&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF1F;&#x7EBF;&#x7A0B;B&#x548C;G&#x62E5;&#x6709;&#x76F8;&#x540C;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x8FD9;&#x91CC;&#x8BB2;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x662F;&#x6307;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x540C;&#x65F6;&#x6267;&#x884C;CAS&#x6307;&#x4EE4;&#x7ADE;&#x4E89;&#x9501;&#x3002;&#x5982;&#x679C;&#x6070;&#x597D;&#x7EBF;&#x7A0B;G&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x7EBF;&#x7A0B;B&#x5C31;&#x5F97;&#x91CD;&#x65B0;&#x6302;&#x8D77;&#x7B49;&#x5F85;&#x88AB;&#x5524;&#x9192;&#x3002;</li>
+</ol>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x8FF0;&#x573A;&#x666F;&#x63CF;&#x8FF0;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x4E66;&#xFF0C;&#x5373;&#x4F7F;&#x7EBF;&#x7A0B;B&#x7B49;&#x4E86;&#x5F88;&#x957F;&#x65F6;&#x95F4;&#x4E5F;&#x5F97;&#x548C;&#x65B0;&#x6765;&#x7684;&#x7EBF;&#x7A0B;G&#x540C;&#x65F6;&#x7ADE;&#x4E89;&#x9501;&#xFF0C;&#x5982;&#x6B64;&#x7684;&#x4E0D;&#x516C;&#x5E73;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonfairSync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sync</span> </span>{
+    <span class="hljs-comment">/**
+     * Performs lock.  Try immediate barge, backing up to normal
+     * acquire on failure.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (compareAndSetState(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))
+            setExclusiveOwnerThread(Thread.currentThread());
+        <span class="hljs-keyword">else</span>
+            acquire(<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">acquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span> </span>{    
+        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp; 
+                acquireQueued(addWaiter(Node.EXCLUSIVE), arg))       
+          selfInterrupt();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+        <span class="hljs-keyword">return</span> nonfairTryAcquire(acquires);
+    }
+}
+</code></pre>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x7528;&#x7EBF;&#x7A0B;A&#x548C;&#x7EBF;&#x7A0B;B&#x6765;&#x63CF;&#x8FF0;&#x975E;&#x516C;&#x5E73;&#x9501;&#x7684;&#x7ADE;&#x4E89;&#x8FC7;&#x7A0B;&#x3002;</p>
+<ol>
+<li><p>&#x7EBF;&#x7A0B;A&#x548C;B&#x540C;&#x65F6;&#x6267;&#x884C;CAS&#x6307;&#x4EE4;&#xFF0C;&#x5047;&#x8BBE;&#x7EBF;&#x7A0B;A&#x6210;&#x529F;&#xFF0C;&#x7EBF;&#x7A0B;B&#x5931;&#x8D25;&#xFF0C;&#x5219;&#x8868;&#x660E;&#x7EBF;&#x7A0B;A&#x6210;&#x529F;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x5E76;&#x628A;&#x540C;&#x6B65;&#x5668;&#x4E2D;&#x7684;exclusiveOwnerThread&#x8BBE;&#x7F6E;&#x4E3A;&#x7EBF;&#x7A0B;A&#x3002;</p>
+</li>
+<li><p>&#x7ADE;&#x4E89;&#x5931;&#x8D25;&#x7684;&#x7EBF;&#x7A0B;B&#xFF0C;&#x5728;nonfairTryAcquire&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x4F1A;&#x518D;&#x6B21;&#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x9501;&#xFF0C;</p>
+<p>Doug lea&#x4F1A;&#x5728;&#x591A;&#x5904;&#x5C1D;&#x8BD5;&#x91CD;&#x65B0;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x5728;&#x8FD9;&#x6BB5;&#x65F6;&#x95F4;&#x5982;&#x679C;&#x7EBF;&#x7A0B;A&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x7EBF;&#x7A0B;B&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#x9501;&#x800C;&#x4E0D;&#x7528;&#x6302;&#x8D77;</p>
+<p>&#x3002;&#x5B8C;&#x6574;&#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2184951-5bd703829cbdc56a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ol>
+<h2 id="&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;"><a name="&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x516C;&#x5E73;&#x9501;&#x5B9E;&#x73B0;</h2>
+<p>&#x5728;&#x516C;&#x5E73;&#x9501;&#x4E2D;&#xFF0C;&#x6BCF;&#x5F53;&#x7EBF;&#x7A0B;&#x6267;&#x884C;lock&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x540C;&#x6B65;&#x5668;&#x7684;&#x961F;&#x5217;&#x4E2D;&#x6709;&#x7EBF;&#x7A0B;&#x5728;&#x7B49;&#x5F85;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x52A0;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;&#x3002;
+&#x573A;&#x666F;&#x5206;&#x6790;&#xFF1A;</p>
+<ol>
+<li>&#x6301;&#x6709;&#x9501;&#x7684;&#x7EBF;&#x7A0B;A&#x6B63;&#x5728;running&#xFF0C;&#x5BF9;&#x5217;&#x4E2D;&#x6709;&#x7EBF;&#x7A0B;BCDEF&#x88AB;&#x6302;&#x8D77;&#x5E76;&#x7B49;&#x5F85;&#x88AB;&#x5524;&#x9192;&#xFF1B;</li>
+<li>&#x7EBF;&#x7A0B;G&#x6267;&#x884C;lock&#xFF0C;&#x961F;&#x5217;&#x4E2D;&#x6709;&#x7EBF;&#x7A0B;BCDEF&#x5728;&#x7B49;&#x5F85;&#xFF0C;&#x7EBF;&#x7A0B;G&#x76F4;&#x63A5;&#x52A0;&#x5165;&#x5230;&#x961F;&#x5217;&#x7684;&#x5BF9;&#x5C3E;&#x3002;</li>
+</ol>
+<p>&#x6240;&#x4EE5;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x516C;&#x5E73;&#x7684;&#xFF0C;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x6700;&#x957F;&#x7684;&#x4F1A;&#x6700;&#x5148;&#x88AB;&#x5524;&#x9192;&#x83B7;&#x53D6;&#x9501;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FairSync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sync</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">3000897897090466540L</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>{
+        acquire(<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-comment">/**
+     * Fair version of tryAcquire.  Don&apos;t grant access unless
+     * recursive call or no waiters or is first.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+        <span class="hljs-keyword">final</span> Thread current = Thread.currentThread();
+        <span class="hljs-keyword">int</span> c = getState();
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;
+                compareAndSetState(<span class="hljs-number">0</span>, acquires)) {
+                setExclusiveOwnerThread(current);
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) {
+            <span class="hljs-keyword">int</span> nextc = c + acquires;
+            <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&quot;Maximum lock count exceeded&quot;</span>);
+            setState(nextc);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<h2 id="&#x91CD;&#x5165;&#x9501;&#x5B9E;&#x73B0;"><a name="&#x91CD;&#x5165;&#x9501;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#&#x91CD;&#x5165;&#x9501;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x91CD;&#x5165;&#x9501;&#x5B9E;&#x73B0;</h2>
+<p>&#x91CD;&#x5165;&#x9501;&#xFF0C;&#x5373;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x83B7;&#x53D6;&#x5DF2;&#x7ECF;&#x6301;&#x6709;&#x7684;&#x9501;&#x3002;&#x5728;&#x975E;&#x516C;&#x5E73;&#x548C;&#x516C;&#x5E73;&#x9501;&#x4E2D;&#xFF0C;&#x90FD;&#x5BF9;&#x91CD;&#x5165;&#x9501;&#x8FDB;&#x884C;&#x4E86;&#x5B9E;&#x73B0;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) {
+        <span class="hljs-keyword">int</span> nextc = c + acquires;
+        <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&quot;Maximum lock count exceeded&quot;</span>);
+        setState(nextc);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+</code></pre>
+<h2 id="&#x6761;&#x4EF6;&#x53D8;&#x91CF;condition"><a name="&#x6761;&#x4EF6;&#x53D8;&#x91CF;condition" class="plugin-anchor" href="#&#x6761;&#x4EF6;&#x53D8;&#x91CF;condition"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6761;&#x4EF6;&#x53D8;&#x91CF;Condition</h2>
+<p>&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x5F88;&#x5927;&#x4E00;&#x4E2A;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;Object.wait/notify/notifyAll&#x96BE;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<pre><code class="lang-Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConditionObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Condition</span>, <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-comment">/** First node of condition queue. */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> Node firstWaiter;
+    <span class="hljs-comment">/** Last node of condition queue. */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> Node lastWaiter;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">signal</span><span class="hljs-params">()</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">signalAll</span><span class="hljs-params">()</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">awaitUninterruptibly</span><span class="hljs-params">()</span> </span>{}  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">await</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{}
+}
+</code></pre>
+<ol>
+<li>Synchronized&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x5728;&#x540C;&#x4E00;&#x4E2A;object&#x7684;&#x6761;&#x4EF6;&#x961F;&#x5217;&#x4E0A;&#x7B49;&#x5F85;&#x3002;&#x800C;ReentrantLock&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;condition&#x90FD;&#x7EF4;&#x62A4;&#x4E86;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#x961F;&#x5217;&#x3002;</li>
+<li>&#x6BCF;&#x4E00;&#x4E2A;<strong>Lock</strong>&#x53EF;&#x4EE5;&#x6709;&#x4EFB;&#x610F;&#x6570;&#x636E;&#x7684;<strong>Condition</strong>&#x5BF9;&#x8C61;&#xFF0C;<strong>Condition</strong>&#x662F;&#x4E0E;<strong>Lock</strong>&#x7ED1;&#x5B9A;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x6709;<strong>Lock</strong>&#x7684;&#x516C;&#x5E73;&#x6027;&#x7279;&#x6027;&#xFF1A;&#x5982;&#x679C;&#x662F;&#x516C;&#x5E73;&#x9501;&#xFF0C;&#x7EBF;&#x7A0B;&#x4E3A;&#x6309;&#x7167;FIFO&#x7684;&#x987A;&#x5E8F;&#x4ECE;<em>Condition.await</em>&#x4E2D;&#x91CA;&#x653E;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x975E;&#x516C;&#x5E73;&#x9501;&#xFF0C;&#x90A3;&#x4E48;&#x540E;&#x7EED;&#x7684;&#x9501;&#x7ADE;&#x4E89;&#x5C31;&#x4E0D;&#x4FDD;&#x8BC1;FIFO&#x987A;&#x5E8F;&#x4E86;&#x3002;</li>
+<li>Condition&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;<strong>await</strong>&#x5BF9;&#x5E94;&#x4E8E;<strong>Object.wait</strong>&#xFF0C;<strong>signal</strong>&#x5BF9;&#x5E94;&#x4E8E;<strong>Object.notify</strong>&#xFF0C;<strong>signalAll</strong>&#x5BF9;&#x5E94;&#x4E8E;<strong>Object.notifyAll</strong>&#x3002;&#x7279;&#x522B;&#x8BF4;&#x660E;&#x7684;&#x662F;Condition&#x7684;&#x63A5;&#x53E3;&#x6539;&#x53D8;&#x540D;&#x79F0;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x4E0E;Object&#x4E2D;&#x7684;<em>wait/notify/notifyAll</em>&#x7684;&#x8BED;&#x4E49;&#x548C;&#x4F7F;&#x7528;&#x4E0A;&#x6DF7;&#x6DC6;&#x3002;</li>
+</ol>
+<p>&#x5148;&#x770B;&#x4E00;&#x4E2A;condition&#x5728;&#x751F;&#x4EA7;&#x8005;&#x6D88;&#x8D39;&#x8005;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.util.concurrent.locks.Condition;
+<span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;
+<span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;
+
+<span class="hljs-comment">/**
+ * Created by j_zhan on 2016/7/13.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Queue</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> T[] items;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();
+    <span class="hljs-keyword">private</span> Condition notFull = lock.newCondition();
+    <span class="hljs-keyword">private</span> Condition notEmpty = lock.newCondition();
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> head, tail, count;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Queue</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxSize)</span> </span>{
+        items = (T[]) <span class="hljs-keyword">new</span> Object[maxSize];
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Queue</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>(<span class="hljs-number">10</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">put</span><span class="hljs-params">(T t)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        lock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">while</span> (count == items.length) {
+                <span class="hljs-comment">//&#x6570;&#x7EC4;&#x6EE1;&#x65F6;&#xFF0C;&#x7EBF;&#x7A0B;&#x8FDB;&#x5165;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x6302;&#x8D77;&#x3002;&#x7EBF;&#x7A0B;&#x88AB;&#x5524;&#x9192;&#x65F6;&#xFF0C;&#x4ECE;&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x3002;</span>
+                notFull.await(); 
+            }
+            items[tail] = t;
+            <span class="hljs-keyword">if</span> (++tail == items.length) {
+                tail = <span class="hljs-number">0</span>;
+            }
+            ++count;
+            notEmpty.signal();
+        } <span class="hljs-keyword">finally</span> {
+            lock.unlock();
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">take</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        lock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">while</span> (count == <span class="hljs-number">0</span>) {
+                notEmpty.await();
+            }
+            T o = items[head];
+            items[head] = <span class="hljs-keyword">null</span>;<span class="hljs-comment">//GC</span>
+            <span class="hljs-keyword">if</span> (++head == items.length) {
+                head = <span class="hljs-number">0</span>;
+            }
+            --count;
+            notFull.signal();
+            <span class="hljs-keyword">return</span> o;
+        } <span class="hljs-keyword">finally</span> {
+            lock.unlock();
+        }
+    }
+}
+</code></pre>
+<p>&#x5047;&#x8BBE;&#x7EBF;&#x7A0B;AB&#x5728;&#x5E76;&#x53D1;&#x7684;&#x5F80;items&#x4E2D;&#x63D2;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x5F53;items&#x4E2D;&#x5143;&#x7D20;&#x5B58;&#x6EE1;&#x65F6;&#x3002;&#x5982;&#x679C;&#x7EBF;&#x7A0B;A&#x83B7;&#x53D6;&#x5230;&#x9501;&#xFF0C;&#x7EE7;&#x7EED;&#x6DFB;&#x52A0;&#x6570;&#x636E;&#xFF0C;&#x6EE1;&#x8DB3;count == items.length&#x6761;&#x4EF6;&#xFF0C;&#x5BFC;&#x81F4;&#x7EBF;&#x7A0B;A&#x6267;&#x884C;await&#x65B9;&#x6CD5;&#x3002;
+<strong>ReentrantLock</strong>&#x662F;&#x72EC;&#x5360;&#x9501;&#xFF0C;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x80FD;&#x83B7;&#x53D6;&#x5230;&#x9501;&#xFF0C;&#x6240;&#x4EE5;&#x5728;lock.lock()&#x548C;lock.unlock()&#x4E4B;&#x95F4;&#x53EF;&#x80FD;&#x6709;&#x4E00;&#x6B21;&#x91CA;&#x653E;&#x9501;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x540C;&#x6837;&#x4E5F;&#x5FC5;&#x7136;&#x8FD8;&#x6709;&#x4E00;&#x6B21;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x64CD;&#x4F5C;&#xFF09;&#x3002;&#x5728;Queue&#x7C7B;&#x4E2D;&#xFF0C;&#x4E0D;&#x7BA1;take&#x8FD8;&#x662F;put&#xFF0C;&#x5728;&#x7EBF;&#x7A0B;&#x6301;&#x6709;&#x9501;&#x4E4B;&#x540E;&#x53EA;&#x6709;await()&#x65B9;&#x6CD5;&#x6709;&#x53EF;&#x80FD;&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x7136;&#x540E;&#x6302;&#x8D77;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E00;&#x65E6;&#x6761;&#x4EF6;&#x6EE1;&#x8DB3;&#x5C31;&#x88AB;&#x5524;&#x9192;&#xFF0C;&#x518D;&#x6B21;&#x83B7;&#x53D6;&#x9501;&#x3002;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">await</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    <span class="hljs-keyword">if</span> (Thread.interrupted())
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InterruptedException();
+    Node node = addConditionWaiter();
+    <span class="hljs-keyword">int</span> savedState = fullyRelease(node);
+    <span class="hljs-keyword">int</span> interruptMode = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (!isOnSyncQueue(node)) {
+        LockSupport.park(<span class="hljs-keyword">this</span>);
+        <span class="hljs-keyword">if</span> ((interruptMode = checkInterruptWhileWaiting(node)) != <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">if</span> (acquireQueued(node, savedState) &amp;&amp; interruptMode != THROW_IE)
+        interruptMode = REINTERRUPT;
+    <span class="hljs-keyword">if</span> (node.nextWaiter != <span class="hljs-keyword">null</span>) <span class="hljs-comment">// clean up if cancelled</span>
+        unlinkCancelledWaiters();
+    <span class="hljs-keyword">if</span> (interruptMode != <span class="hljs-number">0</span>)
+        reportInterruptAfterWait(interruptMode);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> Node <span class="hljs-title">addConditionWaiter</span><span class="hljs-params">()</span> </span>{
+    Node t = lastWaiter;
+    <span class="hljs-comment">// If lastWaiter is cancelled, clean out.</span>
+    <span class="hljs-keyword">if</span> (t != <span class="hljs-keyword">null</span> &amp;&amp; t.waitStatus != Node.CONDITION) {
+        unlinkCancelledWaiters();
+        t = lastWaiter;
+    }
+    Node node = <span class="hljs-keyword">new</span> Node(Thread.currentThread(), Node.CONDITION);
+    <span class="hljs-keyword">if</span> (t == <span class="hljs-keyword">null</span>)
+        firstWaiter = node;
+    <span class="hljs-keyword">else</span>
+        t.nextWaiter = node;
+    lastWaiter = node;
+    <span class="hljs-keyword">return</span> node;
+}
+</code></pre>
+<p>await&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1A;</p>
+<ol>
+<li>&#x5C06;&#x7EBF;&#x7A0B;A&#x52A0;&#x5165;&#x5230;&#x6761;&#x4EF6;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x662F;&#x53D6;&#x6D88;&#x72B6;&#x6001;&#xFF0C;&#x5219;&#x4ECE;&#x5BF9;&#x5217;&#x4E2D;&#x5220;&#x9664;&#x3002;</li>
+<li>&#x7EBF;&#x7A0B;A&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x5B9E;&#x8D28;&#x4E0A;&#x662F;&#x7EBF;&#x7A0B;A&#x4FEE;&#x6539;AQS&#x7684;&#x72B6;&#x6001;state&#x4E3A;0&#xFF0C;&#x5E76;&#x5524;&#x9192;AQS&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x7EBF;&#x7A0B;B&#xFF0C;&#x7EBF;&#x7A0B;B&#x88AB;&#x5524;&#x9192;&#x540E;&#xFF0C;&#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x63A5;&#x4E0B;&#x53BB;&#x7684;&#x8FC7;&#x7A0B;&#x5C31;&#x4E0D;&#x91CD;&#x590D;&#x8BF4;&#x660E;&#x4E86;&#x3002;</li>
+<li>&#x7EBF;&#x7A0B;A&#x91CA;&#x653E;&#x9501;&#x5E76;&#x5524;&#x9192;&#x7EBF;&#x7A0B;B&#x4E4B;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B;A&#x4E0D;&#x5728;AQS&#x7684;&#x540C;&#x6B65;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x7EBF;&#x7A0B;A&#x5C06;&#x901A;&#x8FC7;LockSupport.park&#x8FDB;&#x884C;&#x6302;&#x8D77;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x968F;&#x540E;&#xFF0C;&#x7EBF;&#x7A0B;A&#x7B49;&#x5F85;&#x88AB;&#x5524;&#x9192;&#xFF0C;&#x5F53;&#x7EBF;&#x7A0B;A&#x88AB;&#x5524;&#x9192;&#x65F6;&#xFF0C;&#x4F1A;&#x901A;&#x8FC7;acquireQueued&#x65B9;&#x6CD5;&#x7ADE;&#x4E89;&#x9501;&#xFF0C;&#x5982;&#x679C;&#x5931;&#x8D25;&#xFF0C;&#x7EE7;&#x7EED;&#x6302;&#x8D77;&#x3002;&#x5982;&#x679C;&#x6210;&#x529F;&#xFF0C;&#x7EBF;&#x7A0B;A&#x4ECE;await&#x4F4D;&#x7F6E;&#x6062;&#x590D;&#x3002;</li>
+</ol>
+<p>&#x5047;&#x8BBE;&#x7EBF;&#x7A0B;B&#x83B7;&#x53D6;&#x9501;&#x4E4B;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x4E86;take&#x64CD;&#x4F5C;&#x548C;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x7684;signal&#xFF0C;signal&#x901A;&#x8FC7;&#x67D0;&#x79CD;&#x5B9E;&#x73B0;&#x5524;&#x9192;&#x4E86;&#x7EBF;&#x7A0B;A&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-Java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">signal</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-keyword">if</span> (!isHeldExclusively())
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalMonitorStateException();
+     Node first = firstWaiter;
+     <span class="hljs-keyword">if</span> (first != <span class="hljs-keyword">null</span>)
+         doSignal(first);
+ }
+
+ <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doSignal</span><span class="hljs-params">(Node first)</span> </span>{
+     do {
+         <span class="hljs-keyword">if</span> ((firstWaiter = first.nextWaiter) == <span class="hljs-keyword">null</span>)
+             lastWaiter = <span class="hljs-keyword">null</span>;
+         first.nextWaiter = <span class="hljs-keyword">null</span>;
+     } <span class="hljs-keyword">while</span> (!transferForSignal(first) &amp;&amp;
+              (first = firstWaiter) != <span class="hljs-keyword">null</span>);
+ }
+
+ <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">transferForSignal</span><span class="hljs-params">(Node node)</span> </span>{
+    <span class="hljs-keyword">if</span> (!compareAndSetWaitStatus(node, Node.CONDITION, <span class="hljs-number">0</span>))
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    Node p = enq(node); <span class="hljs-comment">//&#x7EBF;&#x7A0B;A&#x63D2;&#x5165;&#x5230;AQS&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;</span>
+    <span class="hljs-keyword">int</span> ws = p.waitStatus;
+    <span class="hljs-keyword">if</span> (ws &gt; <span class="hljs-number">0</span> || !compareAndSetWaitStatus(p, ws, Node.SIGNAL))
+        LockSupport.unpark(node.thread);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</code></pre>
+<p>signal&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1A;</p>
+<ol>
+<li>&#x63A5;&#x7740;&#x4E0A;&#x8FF0;&#x573A;&#x666F;&#xFF0C;&#x7EBF;&#x7A0B;B&#x6267;&#x884C;&#x4E86;signal&#x65B9;&#x6CD5;&#xFF0C;&#x53D6;&#x51FA;&#x6761;&#x4EF6;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x975E;CANCELLED&#x8282;&#x70B9;&#x7EBF;&#x7A0B;&#xFF0C;&#x5373;&#x7EBF;&#x7A0B;A&#x3002;&#x53E6;&#x5916;&#xFF0C;signalAll&#x5C31;&#x662F;&#x5524;&#x9192;&#x6761;&#x4EF6;&#x961F;&#x5217;&#x4E2D;&#x6240;&#x6709;&#x975E;CANCELLED&#x8282;&#x70B9;&#x7EBF;&#x7A0B;&#x3002;&#x9047;&#x5230;CANCELLED&#x7EBF;&#x7A0B;&#x5C31;&#x9700;&#x8981;&#x5C06;&#x5176;&#x4ECE;&#x961F;&#x5217;&#x4E2D;&#x5220;&#x9664;&#x3002;</li>
+<li>&#x901A;&#x8FC7;CAS&#x4FEE;&#x6539;&#x7EBF;&#x7A0B;A&#x7684;waitStatus&#xFF0C;&#x8868;&#x793A;&#x8BE5;&#x8282;&#x70B9;&#x5DF2;&#x7ECF;&#x4E0D;&#x662F;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x5C06;&#x7EBF;&#x7A0B;A&#x63D2;&#x5165;&#x5230;AQS&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x4E2D;&#x3002;</li>
+<li>&#x5524;&#x9192;&#x7EBF;&#x7A0B;A&#xFF0C;&#x7EBF;&#x7A0B;A&#x548C;&#x522B;&#x7684;&#x7EBF;&#x7A0B;&#x8FDB;&#x884C;&#x9501;&#x7684;&#x7ADE;&#x4E89;&#x3002;</li>
+</ol>
+<h2 id="&#x603B;&#x7ED3;"><a name="&#x603B;&#x7ED3;" class="plugin-anchor" href="#&#x603B;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x603B;&#x7ED3;</h2>
+<ol>
+<li>ReentrantLock&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x7F6E;&#x9501;&#x7C7B;&#x4F3C;&#x7684;&#x529F;&#x80FD;&#x548C;&#x5185;&#x5B58;&#x8BED;&#x4E49;&#x3002;</li>
+<li>&#x6B64;&#x5916;&#xFF0C;ReetrantLock&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5176;&#x5B83;&#x529F;&#x80FD;&#xFF0C;&#x5305;&#x62EC;&#x5B9A;&#x65F6;&#x7684;&#x9501;&#x7B49;&#x5F85;&#x3001;&#x53EF;&#x4E2D;&#x65AD;&#x7684;&#x9501;&#x7B49;&#x5F85;&#x3001;&#x516C;&#x5E73;&#x6027;&#x3001;&#x4EE5;&#x53CA;&#x5B9E;&#x73B0;&#x975E;&#x5757;&#x7ED3;&#x6784;&#x7684;&#x52A0;&#x9501;&#x3001;Condition&#xFF0C;&#x5BF9;&#x7EBF;&#x7A0B;&#x7684;&#x7B49;&#x5F85;&#x548C;&#x5524;&#x9192;&#x7B49;&#x64CD;&#x4F5C;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#xFF0C;&#x4E00;&#x4E2A;ReentrantLock&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;Condition&#x5B9E;&#x4F8B;&#xFF0C;&#x6240;&#x4EE5;&#x66F4;&#x6709;&#x6269;&#x5C55;&#x6027;&#xFF0C;&#x4E0D;&#x8FC7;ReetrantLock&#x9700;&#x8981;&#x663E;&#x793A;&#x7684;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x5E76;&#x5728;finally&#x4E2D;&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x5426;&#x5219;&#x540E;&#x679C;&#x5F88;&#x4E25;&#x91CD;&#x3002;</li>
+<li>ReentrantLock&#x5728;&#x6027;&#x80FD;&#x4E0A;&#x4F3C;&#x4E4E;&#x4F18;&#x4E8E;Synchronized&#xFF0C;&#x5176;&#x4E2D;&#x5728;jdk1.6&#x4E2D;&#x7565;&#x6709;&#x80DC;&#x51FA;&#xFF0C;&#x5728;1.5&#x4E2D;&#x662F;&#x8FDC;&#x8FDC;&#x80DC;&#x51FA;&#x3002;&#x90A3;&#x4E48;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x653E;&#x5F03;&#x5185;&#x7F6E;&#x9501;&#xFF0C;&#x5E76;&#x5728;&#x65B0;&#x4EE3;&#x7801;&#x4E2D;&#x90FD;&#x4F7F;&#x7528;ReetrantLock&#xFF1F;</li>
+<li>&#x5728;java1.5&#x4E2D;&#xFF0C; &#x5185;&#x7F6E;&#x9501;&#x4E0E;ReentrantLock&#x76F8;&#x6BD4;&#x6709;&#x4F8B;&#x5916;&#x4E00;&#x4E2A;&#x4F18;&#x70B9;&#xFF1A;&#x5728;&#x7EBF;&#x7A0B;&#x8F6C;&#x50A8;&#x4E2D;&#x80FD;&#x7ED9;&#x51FA;&#x5728;&#x54EA;&#x4E9B;&#x8C03;&#x7528;&#x5E27;&#x4E2D;&#x83B7;&#x5F97;&#x4E86;&#x54EA;&#x4E9B;&#x9501;&#xFF0C;&#x5E76;&#x80FD;&#x591F;&#x68C0;&#x6D4B;&#x548C;&#x8BC6;&#x522B;&#x53D1;&#x751F;&#x6B7B;&#x9501;&#x7684;&#x7EBF;&#x7A0B;&#x3002;Reentrant&#x7684;&#x975E;&#x5757;&#x72B6;&#x7279;&#x6027;&#x4EFB;&#x7136;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x64CD;&#x4F5C;&#x4E0D;&#x80FD;&#x4E0E;&#x7279;&#x5B9A;&#x7684;&#x6808;&#x5E27;&#x5173;&#x8054;&#x8D77;&#x6765;&#xFF0C;&#x800C;&#x5185;&#x7F6E;&#x9501;&#x5374;&#x53EF;&#x4EE5;&#x3002;</li>
+<li>&#x56E0;&#x4E3A;&#x5185;&#x7F6E;&#x9501;&#x65F6;JVM&#x7684;&#x5185;&#x7F6E;&#x5C5E;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x672A;&#x6765;&#x66F4;&#x53EF;&#x80FD;&#x63D0;&#x5347;synchronized&#x800C;&#x4E0D;&#x662F;ReentrantLock&#x7684;&#x6027;&#x80FD;&#x3002;&#x4F8B;&#x5982;&#x5BF9;&#x7EBF;&#x7A0B;&#x5C01;&#x95ED;&#x7684;&#x9501;&#x5BF9;&#x8C61;&#x6D88;&#x9664;&#x4F18;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#x9501;&#x7C92;&#x5EA6;&#x6765;&#x6D88;&#x9664;&#x5185;&#x7F6E;&#x9501;&#x7684;&#x540C;&#x6B65;&#x3002; </li>
+</ol>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; ruheng.com 2017 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2020-01-06 18:30:01
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="AbstractQueuedSynchronizer.html" class="navigation navigation-prev " aria-label="Previous page: AbstractQueuedSynchronizer详解">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ArrayBlockingQueue.html" class="navigation navigation-next " aria-label="Next page: Java并发集合——ArrayBlockingQueue">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"深入理解ReentrantLock","level":"3.2.9","depth":2,"next":{"title":"Java并发集合——ArrayBlockingQueue","level":"3.2.10","depth":2,"path":"java/concurrence/ArrayBlockingQueue.md","ref":"java/concurrence/ArrayBlockingQueue.md","articles":[]},"previous":{"title":"AbstractQueuedSynchronizer详解","level":"3.2.8","depth":2,"path":"java/concurrence/AbstractQueuedSynchronizer.md","ref":"java/concurrence/AbstractQueuedSynchronizer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","search-plus@^0.0.11","github@^2.0.0","github-buttons@2.1.0","edit-link@^2.0.2","advanced-emoji@^0.2.1","anchors@^0.7.1","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","sectionx@^3.1.0","local-video@^1.0.1","favicon@^0.0.2"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © ruheng.com 2017","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/LRH1993/android_interview"},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"highlight":{},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"github-buttons":{"repo":"LRH1993/android_interview","types":["star"],"size":"small"},"expandable-chapters-small":{},"local-video":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/LRH1993/android_interview/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"search-plus":{}},"theme":"default","author":"ruheng","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"springcity","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"http://springcity.club"}},"gitbook":"3.2.3","description":"记录自己的成长"},"file":{"path":"java/concurrence/ReentrantLock.md","mtime":"2020-01-06T10:30:01.993Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-08T09:19:28.531Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-local-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

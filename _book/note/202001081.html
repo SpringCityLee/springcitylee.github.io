@@ -1,0 +1,1376 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>磁盘挂载共享文件服务安装 · springcity</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="ruheng">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-local-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="20200108.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    
+        <link rel="shortcut icon" href='../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"LRH1993/android_interview","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://springcity.club" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        <li class="header">前言</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">日志</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="202001081.html">
+            
+                <a href="202001081.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    磁盘挂载共享文件服务安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="20200108.html">
+            
+                <a href="20200108.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    tomcat对特殊字符过滤的规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../java/basis.html">
+            
+                <a href="../java/basis.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../java/basis/Collections-Framework.html">
+            
+                <a href="../java/basis/Collections-Framework.html">
+            
+                    
+                        <b>3.1.1.</b>
+                    
+                    Java集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../java/basis/arraylist.html">
+            
+                <a href="../java/basis/arraylist.html">
+            
+                    
+                        <b>3.1.2.</b>
+                    
+                    Java集合——ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../java/basis/linkedlist.html">
+            
+                <a href="../java/basis/linkedlist.html">
+            
+                    
+                        <b>3.1.3.</b>
+                    
+                    Java集合——LinkedList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="../java/basis/hashmap.html">
+            
+                <a href="../java/basis/hashmap.html">
+            
+                    
+                        <b>3.1.4.</b>
+                    
+                    Java集合——HashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="../java/basis/treemap.html">
+            
+                <a href="../java/basis/treemap.html">
+            
+                    
+                        <b>3.1.5.</b>
+                    
+                    Java集合——TreeMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="../java/basis/LinkedHashMap.html">
+            
+                <a href="../java/basis/LinkedHashMap.html">
+            
+                    
+                        <b>3.1.6.</b>
+                    
+                    Java集合——LinkedHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="../java/basis/genericity.html">
+            
+                <a href="../java/basis/genericity.html">
+            
+                    
+                        <b>3.1.7.</b>
+                    
+                    Java泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="../java/basis/reflection1.html">
+            
+                <a href="../java/basis/reflection1.html">
+            
+                    
+                        <b>3.1.8.</b>
+                    
+                    Java反射(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.9" data-path="../java/basis/reflection2.html">
+            
+                <a href="../java/basis/reflection2.html">
+            
+                    
+                        <b>3.1.9.</b>
+                    
+                    Java反射(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.10" data-path="../java/basis/reflection3.html">
+            
+                <a href="../java/basis/reflection3.html">
+            
+                    
+                        <b>3.1.10.</b>
+                    
+                    Java反射(三)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.11" data-path="../java/basis/annotation.html">
+            
+                <a href="../java/basis/annotation.html">
+            
+                    
+                        <b>3.1.11.</b>
+                    
+                    Java注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.12" data-path="../java/basis/java-io1.html">
+            
+                <a href="../java/basis/java-io1.html">
+            
+                    
+                        <b>3.1.12.</b>
+                    
+                    Java IO(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.13" data-path="../java/basis/java-io2.html">
+            
+                <a href="../java/basis/java-io2.html">
+            
+                    
+                        <b>3.1.13.</b>
+                    
+                    Java IO(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.14" data-path="../java/basis/randomaccessfile.html">
+            
+                <a href="../java/basis/randomaccessfile.html">
+            
+                    
+                        <b>3.1.14.</b>
+                    
+                    RandomAccessFile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.15" data-path="../java/basis/java-nio.html">
+            
+                <a href="../java/basis/java-nio.html">
+            
+                    
+                        <b>3.1.15.</b>
+                    
+                    Java NIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.16" data-path="../java/basis/throwable.html">
+            
+                <a href="../java/basis/throwable.html">
+            
+                    
+                        <b>3.1.16.</b>
+                    
+                    Java异常详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.17" data-path="../java/basis/abstract_interface.html">
+            
+                <a href="../java/basis/abstract_interface.html">
+            
+                    
+                        <b>3.1.17.</b>
+                    
+                    Java抽象类和接口的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.18" data-path="../java/basis/copy.html">
+            
+                <a href="../java/basis/copy.html">
+            
+                    
+                        <b>3.1.18.</b>
+                    
+                    Java深拷贝和浅拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.19" data-path="../java/basis/transient.html">
+            
+                <a href="../java/basis/transient.html">
+            
+                    
+                        <b>3.1.19.</b>
+                    
+                    Java transient关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.20" data-path="../java/basis/finally-return.html">
+            
+                <a href="../java/basis/finally-return.html">
+            
+                    
+                        <b>3.1.20.</b>
+                    
+                    Java finally与return执行顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.21" data-path="../java/basis/java-8.html">
+            
+                <a href="../java/basis/java-8.html">
+            
+                    
+                        <b>3.1.21.</b>
+                    
+                    Java 8 新特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../java/concurrence.html">
+            
+                <a href="../java/concurrence.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Java并发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../java/concurrence/CreateThread.html">
+            
+                <a href="../java/concurrence/CreateThread.html">
+            
+                    
+                        <b>3.2.1.</b>
+                    
+                    Java创建线程的三种方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../java/concurrence/thread-pool.html">
+            
+                <a href="../java/concurrence/thread-pool.html">
+            
+                    
+                        <b>3.2.2.</b>
+                    
+                    Java线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../java/concurrence/deadlock.html">
+            
+                <a href="../java/concurrence/deadlock.html">
+            
+                    
+                        <b>3.2.3.</b>
+                    
+                    死锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../java/concurrence/synchronized-reentrantlock.html">
+            
+                <a href="../java/concurrence/synchronized-reentrantlock.html">
+            
+                    
+                        <b>3.2.4.</b>
+                    
+                    Synchronized/ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../java/concurrence/producer-consumer.html">
+            
+                <a href="../java/concurrence/producer-consumer.html">
+            
+                    
+                        <b>3.2.5.</b>
+                    
+                    生产者/消费者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="../java/concurrence/volatile.html">
+            
+                <a href="../java/concurrence/volatile.html">
+            
+                    
+                        <b>3.2.6.</b>
+                    
+                    volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="../java/concurrence/CAS.html">
+            
+                <a href="../java/concurrence/CAS.html">
+            
+                    
+                        <b>3.2.7.</b>
+                    
+                    CAS原子操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="../java/concurrence/AbstractQueuedSynchronizer.html">
+            
+                <a href="../java/concurrence/AbstractQueuedSynchronizer.html">
+            
+                    
+                        <b>3.2.8.</b>
+                    
+                    AbstractQueuedSynchronizer详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.9" data-path="../java/concurrence/ReentrantLock.html">
+            
+                <a href="../java/concurrence/ReentrantLock.html">
+            
+                    
+                        <b>3.2.9.</b>
+                    
+                    深入理解ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.10" data-path="../java/concurrence/ArrayBlockingQueue.html">
+            
+                <a href="../java/concurrence/ArrayBlockingQueue.html">
+            
+                    
+                        <b>3.2.10.</b>
+                    
+                    Java并发集合——ArrayBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.11" data-path="../java/concurrence/LinkedBlockingQueue.html">
+            
+                <a href="../java/concurrence/LinkedBlockingQueue.html">
+            
+                    
+                        <b>3.2.11.</b>
+                    
+                    Java并发集合——LinkedBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.12" data-path="../java/concurrence/ConcurrentHashMap.html">
+            
+                <a href="../java/concurrence/ConcurrentHashMap.html">
+            
+                    
+                        <b>3.2.12.</b>
+                    
+                    Java并发集合——ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../java/virtual-machine.html">
+            
+                <a href="../java/virtual-machine.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Java虚拟机
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../java/virtual-machine/object.html">
+            
+                <a href="../java/virtual-machine/object.html">
+            
+                    
+                        <b>3.3.1.</b>
+                    
+                    对象的创建、内存布局和访问定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../java/virtual-machine/memory.html">
+            
+                <a href="../java/virtual-machine/memory.html">
+            
+                    
+                        <b>3.3.2.</b>
+                    
+                    Java内存区域与内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../java/virtual-machine/classloader.html">
+            
+                <a href="../java/virtual-machine/classloader.html">
+            
+                    
+                        <b>3.3.3.</b>
+                    
+                    Java类加载机制及类加载器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../java/virtual-machine/Garbage-Collector.html">
+            
+                <a href="../java/virtual-machine/Garbage-Collector.html">
+            
+                    
+                        <b>3.3.4.</b>
+                    
+                    JVM中垃圾收集算法及垃圾收集器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../java/virtual-machine/life-cycle.html">
+            
+                <a href="../java/virtual-machine/life-cycle.html">
+            
+                    
+                        <b>3.3.5.</b>
+                    
+                    JVM怎么判断对象是否已死？
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../design-mode/Builder-Pattern.html">
+            
+                <a href="../design-mode/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    创建型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                <a href="../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                    
+                        <b>4.1.1.</b>
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                <a href="../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                    
+                        <b>4.1.2.</b>
+                    
+                    工厂方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                <a href="../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                    
+                        <b>4.1.3.</b>
+                    
+                    抽象工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                <a href="../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                    
+                        <b>4.1.4.</b>
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                <a href="../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.5.</b>
+                    
+                    建造者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../design-mode/Structural-Patterns.html">
+            
+                <a href="../design-mode/Structural-Patterns.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    结构型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                <a href="../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                    
+                        <b>4.2.1.</b>
+                    
+                    适配器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                <a href="../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                    
+                        <b>4.2.2.</b>
+                    
+                    外观模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                <a href="../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                    
+                        <b>4.2.3.</b>
+                    
+                    装饰者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                <a href="../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                    
+                        <b>4.2.4.</b>
+                    
+                    代理模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../design-mode/Behavioral-Pattern.html">
+            
+                <a href="../design-mode/Behavioral-Pattern.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    行为型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                <a href="../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                    
+                        <b>4.3.1.</b>
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                <a href="../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                    
+                        <b>4.3.2.</b>
+                    
+                    迭代器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                <a href="../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                    
+                        <b>4.3.3.</b>
+                    
+                    观察者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.4" data-path="../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                <a href="../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                    
+                        <b>4.3.4.</b>
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.5" data-path="../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                <a href="../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                    
+                        <b>4.3.5.</b>
+                    
+                    模板方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">计算机网络</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../computer-networks/tcpip.html">
+            
+                <a href="../computer-networks/tcpip.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    TCP/IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../computer-networks/http.html">
+            
+                <a href="../computer-networks/http.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    HTTP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../computer-networks/https.html">
+            
+                <a href="../computer-networks/https.html">
+            
+                    
+                        <b>5.3.</b>
+                    
+                    HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >磁盘挂载共享文件服务安装</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="centos&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;"><a name="centos&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;" class="plugin-anchor" href="#centos&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;"><i class="fa fa-link" aria-hidden="true"></i></a>centos&#x78C1;&#x76D8;&#x6302;&#x8F7D;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;</h2>
+<p>[TOC]</p>
+<h5 id="step1&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;"><a name="step1&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;" class="plugin-anchor" href="#step1&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>step1:&#x5B89;&#x88C5;nfs&#x670D;&#x52A1;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;</strong></h5>
+<hr>
+<pre><code class="lang-shell">yum -y install nfs-utils rpcbind
+</code></pre>
+<p>&#x5F53;&#x770B;&#x5230;<strong>complete!</strong>&#x540E;&#x8BF4;&#x660E;&#x5B89;&#x88C5;&#x6210;&#x529F;&#x3002;</p>
+<h5 id="step2&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;"><a name="step2&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;" class="plugin-anchor" href="#step2&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>step2:&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#xFF08;&#x62A5;&#x88C5;&#x670D;&#x52A1;&#x5668;&#xFF09;</strong></h5>
+<hr>
+<p>1&#x3001;&#x5728;NFS&#x670D;&#x52A1;&#x7AEF;&#x4E0A;&#x521B;&#x5EFA;&#x5171;&#x4EAB;&#x76EE;&#x5F55;/export/nfs&#x5E76;&#x8BBE;&#x7F6E;&#x6743;&#x9650;</p>
+<pre><code class="lang-shell"> mkdir -p /export/nfs
+</code></pre>
+<pre><code class="lang-shell">chmod 666 /export/nfs/
+</code></pre>
+<p>2&#x3001;&#x7F16;&#x8F91;export&#x6587;&#x4EF6;</p>
+<pre><code class="lang-shell"> vi /etc/exports
+</code></pre>
+<p>&#x52A0;&#x5165;&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x6B64;&#x5171;&#x4EAB;&#x76EE;&#x5F55;&#x7684;linux&#x670D;&#x52A1;&#x5668;IP   </p>
+<pre><code> /home/upload 172.28.18.24(rw,sync,no_root_squash,no_subtree_check)
+</code></pre><p>3&#x3001;&#x91CD;&#x542F;rpcbind&#x670D;&#x52A1;&#xFF1A;</p>
+<pre><code class="lang-shell">service rpcbind restart
+</code></pre>
+<p>4&#x3001;&#x91CD;&#x542F;nfs&#x670D;&#x52A1;&#xFF1A;</p>
+<pre><code class="lang-shell">service nfs restart
+</code></pre>
+<p>5&#x3001;exportfs&#x4F7F;&#x914D;&#x7F6E;&#x751F;&#x6548;</p>
+<pre><code class="lang-shell">exportfs
+</code></pre>
+<p><img src="../imgs/mount.png" alt="mount"></p>
+<p>6&#x3001;&#x67E5;&#x770B;&#x81EA;&#x5DF1;&#x7684;&#x5171;&#x4EAB;&#x670D;&#x52A1;&#xFF1A;</p>
+<pre><code class="lang-shell">showmount -e       -- showmount -e NFS&#x670D;&#x52A1;&#x5668;IP
+</code></pre>
+<p>8.&#x67E5;&#x770B;&#x5DF2;&#x6302;&#x8F7D;&#x76EE;&#x5F55;&#xFF1A;</p>
+<pre><code class="lang-shell">showmount -a
+</code></pre>
+<hr>
+<h5 id="step3&#x5728;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x4F7F;&#x7528;mount&#x547D;&#x4EE4;&#x6307;&#x5411;nfs&#x670D;&#x52A1;&#x5668;&#xFF08;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;ip-172281824&#xFF09;&#x8868;&#x52A1;app&#x670D;&#x52A1;&#x5668;"><a name="step3&#x5728;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x4F7F;&#x7528;mount&#x547D;&#x4EE4;&#x6307;&#x5411;nfs&#x670D;&#x52A1;&#x5668;&#xFF08;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;ip-172281824&#xFF09;&#x8868;&#x52A1;app&#x670D;&#x52A1;&#x5668;" class="plugin-anchor" href="#step3&#x5728;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x4F7F;&#x7528;mount&#x547D;&#x4EE4;&#x6307;&#x5411;nfs&#x670D;&#x52A1;&#x5668;&#xFF08;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;ip-172281824&#xFF09;&#x8868;&#x52A1;app&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>step3:&#x5728;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x4F7F;&#x7528;mount&#x547D;&#x4EE4;&#x6307;&#x5411;nfs&#x670D;&#x52A1;&#x5668;&#xFF08;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;ip 172.28.18.24&#xFF09;(&#x8868;&#x52A1;APP&#x670D;&#x52A1;&#x5668;)</strong></h5>
+<p>&#x76EE;&#x5F55;&#xFF1A;/home/upload</p>
+<p>&#x547D;&#x4EE4;&#x683C;&#x5F0F;</p>
+<p># mount NFS&#x670D;&#x52A1;&#x5668;IP:&#x5171;&#x4EAB;&#x76EE;&#x5F55; &#x672C;&#x5730;&#x6302;&#x8F7D;&#x70B9;&#x76EE;&#x5F55;</p>
+<pre><code>yum install nfs-utils
+</code></pre><pre><code class="lang-shell">mount 172.28.18.22:/home/upload  /home/upload
+</code></pre>
+<hr>
+<p>&#x200B;                                                                                                                                                                <em>20200108 by ccli</em> </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; ruheng.com 2017 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2020-01-08 15:49:21
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 介绍">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="20200108.html" class="navigation navigation-next " aria-label="Next page: tomcat对特殊字符过滤的规则">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"磁盘挂载共享文件服务安装","level":"2.1","depth":1,"next":{"title":"tomcat对特殊字符过滤的规则","level":"2.2","depth":1,"path":"note/20200108.md","ref":"note/20200108.md","articles":[]},"previous":{"title":"介绍","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","search-plus@^0.0.11","github@^2.0.0","github-buttons@2.1.0","edit-link@^2.0.2","advanced-emoji@^0.2.1","anchors@^0.7.1","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","sectionx@^3.1.0","local-video@^1.0.1","favicon@^0.0.2"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © ruheng.com 2017","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/LRH1993/android_interview"},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"highlight":{},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"github-buttons":{"repo":"LRH1993/android_interview","types":["star"],"size":"small"},"expandable-chapters-small":{},"local-video":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/LRH1993/android_interview/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"search-plus":{}},"theme":"default","author":"ruheng","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"springcity","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"http://springcity.club"}},"gitbook":"3.2.3","description":"记录自己的成长"},"file":{"path":"note/202001081.md","mtime":"2020-01-08T07:49:21.535Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-08T09:19:28.531Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-local-video/video.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

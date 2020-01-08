@@ -1,0 +1,1581 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Java transient关键字 · springcity</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="ruheng">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-local-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="finally-return.html" />
+    
+    
+    <link rel="prev" href="copy.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"repo":"LRH1993/android_interview","types":["star"],"size":"small"};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://springcity.club" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        <li class="header">前言</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">日志</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../note/202001081.html">
+            
+                <a href="../../note/202001081.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    磁盘挂载共享文件服务安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../note/20200108.html">
+            
+                <a href="../../note/20200108.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    tomcat对特殊字符过滤的规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../basis.html">
+            
+                <a href="../basis.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="Collections-Framework.html">
+            
+                <a href="Collections-Framework.html">
+            
+                    
+                        <b>3.1.1.</b>
+                    
+                    Java集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="arraylist.html">
+            
+                <a href="arraylist.html">
+            
+                    
+                        <b>3.1.2.</b>
+                    
+                    Java集合——ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="linkedlist.html">
+            
+                <a href="linkedlist.html">
+            
+                    
+                        <b>3.1.3.</b>
+                    
+                    Java集合——LinkedList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="hashmap.html">
+            
+                <a href="hashmap.html">
+            
+                    
+                        <b>3.1.4.</b>
+                    
+                    Java集合——HashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="treemap.html">
+            
+                <a href="treemap.html">
+            
+                    
+                        <b>3.1.5.</b>
+                    
+                    Java集合——TreeMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="LinkedHashMap.html">
+            
+                <a href="LinkedHashMap.html">
+            
+                    
+                        <b>3.1.6.</b>
+                    
+                    Java集合——LinkedHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="genericity.html">
+            
+                <a href="genericity.html">
+            
+                    
+                        <b>3.1.7.</b>
+                    
+                    Java泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="reflection1.html">
+            
+                <a href="reflection1.html">
+            
+                    
+                        <b>3.1.8.</b>
+                    
+                    Java反射(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.9" data-path="reflection2.html">
+            
+                <a href="reflection2.html">
+            
+                    
+                        <b>3.1.9.</b>
+                    
+                    Java反射(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.10" data-path="reflection3.html">
+            
+                <a href="reflection3.html">
+            
+                    
+                        <b>3.1.10.</b>
+                    
+                    Java反射(三)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.11" data-path="annotation.html">
+            
+                <a href="annotation.html">
+            
+                    
+                        <b>3.1.11.</b>
+                    
+                    Java注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.12" data-path="java-io1.html">
+            
+                <a href="java-io1.html">
+            
+                    
+                        <b>3.1.12.</b>
+                    
+                    Java IO(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.13" data-path="java-io2.html">
+            
+                <a href="java-io2.html">
+            
+                    
+                        <b>3.1.13.</b>
+                    
+                    Java IO(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.14" data-path="randomaccessfile.html">
+            
+                <a href="randomaccessfile.html">
+            
+                    
+                        <b>3.1.14.</b>
+                    
+                    RandomAccessFile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.15" data-path="java-nio.html">
+            
+                <a href="java-nio.html">
+            
+                    
+                        <b>3.1.15.</b>
+                    
+                    Java NIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.16" data-path="throwable.html">
+            
+                <a href="throwable.html">
+            
+                    
+                        <b>3.1.16.</b>
+                    
+                    Java异常详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.17" data-path="abstract_interface.html">
+            
+                <a href="abstract_interface.html">
+            
+                    
+                        <b>3.1.17.</b>
+                    
+                    Java抽象类和接口的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.18" data-path="copy.html">
+            
+                <a href="copy.html">
+            
+                    
+                        <b>3.1.18.</b>
+                    
+                    Java深拷贝和浅拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.1.19" data-path="transient.html">
+            
+                <a href="transient.html">
+            
+                    
+                        <b>3.1.19.</b>
+                    
+                    Java transient关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.20" data-path="finally-return.html">
+            
+                <a href="finally-return.html">
+            
+                    
+                        <b>3.1.20.</b>
+                    
+                    Java finally与return执行顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.21" data-path="java-8.html">
+            
+                <a href="java-8.html">
+            
+                    
+                        <b>3.1.21.</b>
+                    
+                    Java 8 新特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../concurrence.html">
+            
+                <a href="../concurrence.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Java并发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../concurrence/CreateThread.html">
+            
+                <a href="../concurrence/CreateThread.html">
+            
+                    
+                        <b>3.2.1.</b>
+                    
+                    Java创建线程的三种方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../concurrence/thread-pool.html">
+            
+                <a href="../concurrence/thread-pool.html">
+            
+                    
+                        <b>3.2.2.</b>
+                    
+                    Java线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../concurrence/deadlock.html">
+            
+                <a href="../concurrence/deadlock.html">
+            
+                    
+                        <b>3.2.3.</b>
+                    
+                    死锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../concurrence/synchronized-reentrantlock.html">
+            
+                <a href="../concurrence/synchronized-reentrantlock.html">
+            
+                    
+                        <b>3.2.4.</b>
+                    
+                    Synchronized/ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../concurrence/producer-consumer.html">
+            
+                <a href="../concurrence/producer-consumer.html">
+            
+                    
+                        <b>3.2.5.</b>
+                    
+                    生产者/消费者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="../concurrence/volatile.html">
+            
+                <a href="../concurrence/volatile.html">
+            
+                    
+                        <b>3.2.6.</b>
+                    
+                    volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="../concurrence/CAS.html">
+            
+                <a href="../concurrence/CAS.html">
+            
+                    
+                        <b>3.2.7.</b>
+                    
+                    CAS原子操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="../concurrence/AbstractQueuedSynchronizer.html">
+            
+                <a href="../concurrence/AbstractQueuedSynchronizer.html">
+            
+                    
+                        <b>3.2.8.</b>
+                    
+                    AbstractQueuedSynchronizer详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.9" data-path="../concurrence/ReentrantLock.html">
+            
+                <a href="../concurrence/ReentrantLock.html">
+            
+                    
+                        <b>3.2.9.</b>
+                    
+                    深入理解ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.10" data-path="../concurrence/ArrayBlockingQueue.html">
+            
+                <a href="../concurrence/ArrayBlockingQueue.html">
+            
+                    
+                        <b>3.2.10.</b>
+                    
+                    Java并发集合——ArrayBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.11" data-path="../concurrence/LinkedBlockingQueue.html">
+            
+                <a href="../concurrence/LinkedBlockingQueue.html">
+            
+                    
+                        <b>3.2.11.</b>
+                    
+                    Java并发集合——LinkedBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.12" data-path="../concurrence/ConcurrentHashMap.html">
+            
+                <a href="../concurrence/ConcurrentHashMap.html">
+            
+                    
+                        <b>3.2.12.</b>
+                    
+                    Java并发集合——ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../virtual-machine.html">
+            
+                <a href="../virtual-machine.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Java虚拟机
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../virtual-machine/object.html">
+            
+                <a href="../virtual-machine/object.html">
+            
+                    
+                        <b>3.3.1.</b>
+                    
+                    对象的创建、内存布局和访问定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../virtual-machine/memory.html">
+            
+                <a href="../virtual-machine/memory.html">
+            
+                    
+                        <b>3.3.2.</b>
+                    
+                    Java内存区域与内存模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../virtual-machine/classloader.html">
+            
+                <a href="../virtual-machine/classloader.html">
+            
+                    
+                        <b>3.3.3.</b>
+                    
+                    Java类加载机制及类加载器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../virtual-machine/Garbage-Collector.html">
+            
+                <a href="../virtual-machine/Garbage-Collector.html">
+            
+                    
+                        <b>3.3.4.</b>
+                    
+                    JVM中垃圾收集算法及垃圾收集器详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../virtual-machine/life-cycle.html">
+            
+                <a href="../virtual-machine/life-cycle.html">
+            
+                    
+                        <b>3.3.5.</b>
+                    
+                    JVM怎么判断对象是否已死？
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../design-mode/Builder-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    创建型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Simple-Factory.html">
+            
+                    
+                        <b>4.1.1.</b>
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Factory-Method.html">
+            
+                    
+                        <b>4.1.2.</b>
+                    
+                    工厂方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Abstract-Factory.html">
+            
+                    
+                        <b>4.1.3.</b>
+                    
+                    抽象工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Singleton-Pattern.html">
+            
+                    
+                        <b>4.1.4.</b>
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                <a href="../../design-mode/Builder-Pattern/Builder-Pattern.html">
+            
+                    
+                        <b>4.1.5.</b>
+                    
+                    建造者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../design-mode/Structural-Patterns.html">
+            
+                <a href="../../design-mode/Structural-Patterns.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    结构型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Adapter-Pattern.html">
+            
+                    
+                        <b>4.2.1.</b>
+                    
+                    适配器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Facade-Pattern.html">
+            
+                    
+                        <b>4.2.2.</b>
+                    
+                    外观模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Decorator-Pattern.html">
+            
+                    
+                        <b>4.2.3.</b>
+                    
+                    装饰者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                <a href="../../design-mode/Structural-Patterns/Proxy-Pattern.html">
+            
+                    
+                        <b>4.2.4.</b>
+                    
+                    代理模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../../design-mode/Behavioral-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    行为型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="../../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Command-Pattern.html">
+            
+                    
+                        <b>4.3.1.</b>
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="../../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Iterator-Pattern.html">
+            
+                    
+                        <b>4.3.2.</b>
+                    
+                    迭代器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="../../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Observer-Pattern.html">
+            
+                    
+                        <b>4.3.3.</b>
+                    
+                    观察者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.4" data-path="../../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Strategy-Pattern.html">
+            
+                    
+                        <b>4.3.4.</b>
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.5" data-path="../../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                <a href="../../design-mode/Behavioral-Pattern/Template-Method.html">
+            
+                    
+                        <b>4.3.5.</b>
+                    
+                    模板方法模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">计算机网络</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../computer-networks/tcpip.html">
+            
+                <a href="../../computer-networks/tcpip.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    TCP/IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../computer-networks/http.html">
+            
+                <a href="../../computer-networks/http.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    HTTP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../computer-networks/https.html">
+            
+                <a href="../../computer-networks/https.html">
+            
+                    
+                        <b>5.3.</b>
+                    
+                    HTTPS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Java transient关键字</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x4E00;&#x3001;-transient&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;"><a name="&#x4E00;&#x3001;-transient&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;" class="plugin-anchor" href="#&#x4E00;&#x3001;-transient&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#x3001; transient&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h2>
+<p>&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53EA;&#x8981;&#x5B9E;&#x73B0;&#x4E86;Serilizable&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF0C;java&#x7684;&#x8FD9;&#x79CD;&#x5E8F;&#x5217;&#x5316;&#x6A21;&#x5F0F;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x4FBF;&#x5229;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4E0D;&#x5FC5;&#x5173;&#x7CFB;&#x5177;&#x4F53;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EA;&#x8981;&#x8FD9;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;Serilizable&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x5E8F;&#x5217;&#x5316;&#x3002;</p>
+<p>&#x7136;&#x800C;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5E38;&#x5E38;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x6709;&#x4E9B;&#x5C5E;&#x6027;&#x9700;&#x8981;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x800C;&#x5176;&#x4ED6;&#x5C5E;&#x6027;&#x4E0D;&#x9700;&#x8981;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x6253;&#x4E2A;&#x6BD4;&#x65B9;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x6709;&#x4E00;&#x4E9B;&#x654F;&#x611F;&#x4FE1;&#x606F;&#xFF08;&#x5982;&#x5BC6;&#x7801;&#xFF0C;&#x94F6;&#x884C;&#x5361;&#x53F7;&#x7B49;&#xFF09;&#xFF0C;&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#x8D77;&#x89C1;&#xFF0C;&#x4E0D;&#x5E0C;&#x671B;&#x5728;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;&#xFF08;&#x4E3B;&#x8981;&#x6D89;&#x53CA;&#x5230;&#x5E8F;&#x5217;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x672C;&#x5730;&#x5E8F;&#x5217;&#x5316;&#x7F13;&#x5B58;&#x4E5F;&#x9002;&#x7528;&#xFF09;&#x4E2D;&#x88AB;&#x4F20;&#x8F93;&#xFF0C;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x5BF9;&#x5E94;&#x7684;&#x53D8;&#x91CF;&#x5C31;&#x53EF;&#x4EE5;&#x52A0;&#x4E0A;transient&#x5173;&#x952E;&#x5B57;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4EC5;&#x5B58;&#x4E8E;&#x8C03;&#x7528;&#x8005;&#x7684;&#x5185;&#x5B58;&#x4E2D;&#x800C;&#x4E0D;&#x4F1A;&#x5199;&#x5230;&#x78C1;&#x76D8;&#x91CC;&#x6301;&#x4E45;&#x5316;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#xFF0C;java &#x7684;transient&#x5173;&#x952E;&#x5B57;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4FBF;&#x5229;&#xFF0C;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x5B9E;&#x73B0;Serilizable&#x63A5;&#x53E3;&#xFF0C;&#x5C06;&#x4E0D;&#x9700;&#x8981;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5C5E;&#x6027;&#x524D;&#x6DFB;&#x52A0;&#x5173;&#x952E;&#x5B57;transient&#xFF0C;&#x5E8F;&#x5217;&#x5316;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x5C31;&#x4E0D;&#x4F1A;&#x5E8F;&#x5217;&#x5316;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x7684;&#x5730;&#x4E2D;&#x3002;</p>
+<p>&#x793A;&#x4F8B;code&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.io.FileInputStream;
+<span class="hljs-keyword">import</span> java.io.FileNotFoundException;
+<span class="hljs-keyword">import</span> java.io.FileOutputStream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;
+<span class="hljs-keyword">import</span> java.io.Serializable;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@description</span> &#x4F7F;&#x7528;transient&#x5173;&#x952E;&#x5B57;&#x4E0D;&#x5E8F;&#x5217;&#x5316;&#x67D0;&#x4E2A;&#x53D8;&#x91CF;
+ *        &#x6CE8;&#x610F;&#x8BFB;&#x53D6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x987A;&#x5E8F;&#x4E00;&#x5B9A;&#x8981;&#x548C;&#x5B58;&#x653E;&#x6570;&#x636E;&#x7684;&#x987A;&#x5E8F;&#x4FDD;&#x6301;&#x4E00;&#x81F4;
+ *        
+ * <span class="hljs-doctag">@author</span> Alexia
+ * <span class="hljs-doctag">@date</span>  2013-10-15
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransientTest</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+
+        User user = <span class="hljs-keyword">new</span> User();
+        user.setUsername(<span class="hljs-string">&quot;Alexia&quot;</span>);
+        user.setPasswd(<span class="hljs-string">&quot;123456&quot;</span>);
+
+        System.out.println(<span class="hljs-string">&quot;read before Serializable: &quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;username: &quot;</span> + user.getUsername());
+        System.err.println(<span class="hljs-string">&quot;password: &quot;</span> + user.getPasswd());
+
+        <span class="hljs-keyword">try</span> {
+            ObjectOutputStream os = <span class="hljs-keyword">new</span> ObjectOutputStream(
+                    <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;C:/user.txt&quot;</span>));
+            os.writeObject(user); <span class="hljs-comment">// &#x5C06;User&#x5BF9;&#x8C61;&#x5199;&#x8FDB;&#x6587;&#x4EF6;</span>
+            os.flush();
+            os.close();
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+        <span class="hljs-keyword">try</span> {
+            ObjectInputStream is = <span class="hljs-keyword">new</span> ObjectInputStream(<span class="hljs-keyword">new</span> FileInputStream(
+                    <span class="hljs-string">&quot;C:/user.txt&quot;</span>));
+            user = (User) is.readObject(); <span class="hljs-comment">// &#x4ECE;&#x6D41;&#x4E2D;&#x8BFB;&#x53D6;User&#x7684;&#x6570;&#x636E;</span>
+            is.close();
+
+            System.out.println(<span class="hljs-string">&quot;\nread after Serializable: &quot;</span>);
+            System.out.println(<span class="hljs-string">&quot;username: &quot;</span> + user.getUsername());
+            System.err.println(<span class="hljs-string">&quot;password: &quot;</span> + user.getPasswd());
+
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">8294180014912103005L</span>;  
+
+    <span class="hljs-keyword">private</span> String username;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> String passwd;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> username;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>{
+        <span class="hljs-keyword">this</span>.username = username;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPasswd</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> passwd;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPasswd</span><span class="hljs-params">(String passwd)</span> </span>{
+        <span class="hljs-keyword">this</span>.passwd = passwd;
+    }
+
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-java">read before Serializable: 
+username: Alexia
+password: <span class="hljs-number">123456</span>
+
+read after Serializable: 
+username: Alexia
+password: <span class="hljs-keyword">null</span>
+</code></pre>
+<h2 id="&#x4E8C;&#x3001;transient&#x4F7F;&#x7528;&#x5C0F;&#x7ED3;"><a name="&#x4E8C;&#x3001;transient&#x4F7F;&#x7528;&#x5C0F;&#x7ED3;" class="plugin-anchor" href="#&#x4E8C;&#x3001;transient&#x4F7F;&#x7528;&#x5C0F;&#x7ED3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8C;&#x3001;transient&#x4F7F;&#x7528;&#x5C0F;&#x7ED3;</h2>
+<p>1&#xFF09;&#x4E00;&#x65E6;&#x53D8;&#x91CF;&#x88AB;transient&#x4FEE;&#x9970;&#xFF0C;&#x53D8;&#x91CF;&#x5C06;&#x4E0D;&#x518D;&#x662F;&#x5BF9;&#x8C61;&#x6301;&#x4E45;&#x5316;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x5185;&#x5BB9;&#x5728;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x65E0;&#x6CD5;&#x83B7;&#x5F97;&#x8BBF;&#x95EE;&#x3002;</p>
+<p>2&#xFF09;transient&#x5173;&#x952E;&#x5B57;&#x53EA;&#x80FD;&#x4FEE;&#x9970;&#x53D8;&#x91CF;&#xFF0C;&#x800C;&#x4E0D;&#x80FD;&#x4FEE;&#x9970;&#x65B9;&#x6CD5;&#x548C;&#x7C7B;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x662F;&#x4E0D;&#x80FD;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x3002;&#x53D8;&#x91CF;&#x5982;&#x679C;&#x662F;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x53D8;&#x91CF;&#xFF0C;&#x5219;&#x8BE5;&#x7C7B;&#x9700;&#x8981;&#x5B9E;&#x73B0;Serializable&#x63A5;&#x53E3;&#x3002;</p>
+<p>3&#xFF09;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x4E0D;&#x518D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x4E00;&#x4E2A;<strong>&#x9759;&#x6001;&#x53D8;&#x91CF;</strong>&#x4E0D;&#x7BA1;&#x662F;&#x5426;&#x88AB;transient&#x4FEE;&#x9970;&#xFF0C;&#x5747;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x70B9;&#x53EF;&#x80FD;&#x6709;&#x4E9B;&#x4EBA;&#x5F88;&#x8FF7;&#x60D1;&#xFF0C;&#x56E0;&#x4E3A;&#x53D1;&#x73B0;&#x5728;User&#x7C7B;&#x4E2D;&#x7684;username&#x5B57;&#x6BB5;&#x524D;&#x52A0;&#x4E0A;static&#x5173;&#x952E;&#x5B57;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4F9D;&#x7136;&#x4E0D;&#x53D8;&#xFF0C;&#x5373;static&#x7C7B;&#x578B;&#x7684;username&#x4E5F;&#x8BFB;&#x51FA;&#x6765;&#x4E3A;&#x201C;Alexia&#x201D;&#x4E86;&#xFF0C;&#x8FD9;&#x4E0D;&#x4E0E;&#x7B2C;&#x4E09;&#x70B9;&#x8BF4;&#x7684;&#x77DB;&#x76FE;&#x5417;&#xFF1F;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;&#x7B2C;&#x4E09;&#x70B9;&#x786E;&#x5B9E;&#x6CA1;&#x9519;&#xFF08;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x4E0D;&#x7BA1;&#x662F;&#x5426;&#x88AB;transient&#x4FEE;&#x9970;&#xFF0C;&#x5747;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF09;&#xFF0C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x540E;&#x7C7B;&#x4E2D;static&#x578B;&#x53D8;&#x91CF;username&#x7684;&#x503C;&#x4E3A;&#x5F53;&#x524D;JVM&#x4E2D;&#x5BF9;&#x5E94;static&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x662F;JVM&#x4E2D;&#x7684;&#x4E0D;&#x662F;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x5F97;&#x51FA;&#x7684;&#xFF0C;&#x4E0D;&#x76F8;&#x4FE1;&#xFF1F;&#x597D;&#x5427;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x6765;&#x8BC1;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.io.FileInputStream;
+<span class="hljs-keyword">import</span> java.io.FileNotFoundException;
+<span class="hljs-keyword">import</span> java.io.FileOutputStream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;
+<span class="hljs-keyword">import</span> java.io.Serializable;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@description</span> &#x4F7F;&#x7528;transient&#x5173;&#x952E;&#x5B57;&#x4E0D;&#x5E8F;&#x5217;&#x5316;&#x67D0;&#x4E2A;&#x53D8;&#x91CF;
+ *        &#x6CE8;&#x610F;&#x8BFB;&#x53D6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x987A;&#x5E8F;&#x4E00;&#x5B9A;&#x8981;&#x548C;&#x5B58;&#x653E;&#x6570;&#x636E;&#x7684;&#x987A;&#x5E8F;&#x4FDD;&#x6301;&#x4E00;&#x81F4;
+ *        
+ * <span class="hljs-doctag">@author</span> Alexia
+ * <span class="hljs-doctag">@date</span>  2013-10-15
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransientTest</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+
+        User user = <span class="hljs-keyword">new</span> User();
+        user.setUsername(<span class="hljs-string">&quot;Alexia&quot;</span>);
+        user.setPasswd(<span class="hljs-string">&quot;123456&quot;</span>);
+
+        System.out.println(<span class="hljs-string">&quot;read before Serializable: &quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;username: &quot;</span> + user.getUsername());
+        System.err.println(<span class="hljs-string">&quot;password: &quot;</span> + user.getPasswd());
+
+        <span class="hljs-keyword">try</span> {
+            ObjectOutputStream os = <span class="hljs-keyword">new</span> ObjectOutputStream(
+                    <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;C:/user.txt&quot;</span>));
+            os.writeObject(user); <span class="hljs-comment">// &#x5C06;User&#x5BF9;&#x8C61;&#x5199;&#x8FDB;&#x6587;&#x4EF6;</span>
+            os.flush();
+            os.close();
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// &#x5728;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x524D;&#x6539;&#x53D8;username&#x7684;&#x503C;</span>
+            User.username = <span class="hljs-string">&quot;jmwang&quot;</span>;
+
+            ObjectInputStream is = <span class="hljs-keyword">new</span> ObjectInputStream(<span class="hljs-keyword">new</span> FileInputStream(
+                    <span class="hljs-string">&quot;C:/user.txt&quot;</span>));
+            user = (User) is.readObject(); <span class="hljs-comment">// &#x4ECE;&#x6D41;&#x4E2D;&#x8BFB;&#x53D6;User&#x7684;&#x6570;&#x636E;</span>
+            is.close();
+
+            System.out.println(<span class="hljs-string">&quot;\nread after Serializable: &quot;</span>);
+            System.out.println(<span class="hljs-string">&quot;username: &quot;</span> + user.getUsername());
+            System.err.println(<span class="hljs-string">&quot;password: &quot;</span> + user.getPasswd());
+
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">8294180014912103005L</span>;  
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String username;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> String passwd;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> username;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>{
+        <span class="hljs-keyword">this</span>.username = username;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPasswd</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> passwd;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPasswd</span><span class="hljs-params">(String passwd)</span> </span>{
+        <span class="hljs-keyword">this</span>.passwd = passwd;
+    }
+
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-java">read before Serializable: 
+username: Alexia
+password: <span class="hljs-number">123456</span>
+
+read after Serializable: 
+username: jmwang
+password: <span class="hljs-keyword">null</span>
+</code></pre>
+<h2 id="&#x4E09;&#x3001;transient&#x4F7F;&#x7528;&#x7EC6;&#x8282;&#x2014;&#x2014;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x771F;&#x7684;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x5417;&#xFF1F;"><a name="&#x4E09;&#x3001;transient&#x4F7F;&#x7528;&#x7EC6;&#x8282;&#x2014;&#x2014;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x771F;&#x7684;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x5417;&#xFF1F;" class="plugin-anchor" href="#&#x4E09;&#x3001;transient&#x4F7F;&#x7528;&#x7EC6;&#x8282;&#x2014;&#x2014;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x771F;&#x7684;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x5417;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E09;&#x3001;transient&#x4F7F;&#x7528;&#x7EC6;&#x8282;&#x2014;&#x2014;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x771F;&#x7684;&#x4E0D;&#x80FD;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x5417;&#xFF1F;</h2>
+<p>&#x601D;&#x8003;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.io.Externalizable;
+<span class="hljs-keyword">import</span> java.io.File;
+<span class="hljs-keyword">import</span> java.io.FileInputStream;
+<span class="hljs-keyword">import</span> java.io.FileOutputStream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.ObjectInput;
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;
+<span class="hljs-keyword">import</span> java.io.ObjectOutput;
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@descripiton</span> Externalizable&#x63A5;&#x53E3;&#x7684;&#x4F7F;&#x7528;
+ * 
+ * <span class="hljs-doctag">@author</span> Alexia
+ * <span class="hljs-doctag">@date</span> 2013-10-15
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExternalizableTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Externalizable</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> String content = <span class="hljs-string">&quot;&#x662F;&#x7684;&#xFF0C;&#x6211;&#x5C06;&#x4F1A;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x4E0D;&#x7BA1;&#x6211;&#x662F;&#x5426;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&quot;</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeExternal</span><span class="hljs-params">(ObjectOutput out)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        out.writeObject(content);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readExternal</span><span class="hljs-params">(ObjectInput in)</span> <span class="hljs-keyword">throws</span> IOException,
+            ClassNotFoundException </span>{
+        content = (String) in.readObject();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+
+        ExternalizableTest et = <span class="hljs-keyword">new</span> ExternalizableTest();
+        ObjectOutput out = <span class="hljs-keyword">new</span> ObjectOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(
+                <span class="hljs-keyword">new</span> File(<span class="hljs-string">&quot;test&quot;</span>)));
+        out.writeObject(et);
+
+        ObjectInput in = <span class="hljs-keyword">new</span> ObjectInputStream(<span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(
+                <span class="hljs-string">&quot;test&quot;</span>)));
+        et = (ExternalizableTest) in.readObject();
+        System.out.println(et.content);
+
+        out.close();
+        in.close();
+    }
+}
+</code></pre>
+<p>content&#x53D8;&#x91CF;&#x4F1A;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x5417;&#xFF1F;&#x597D;&#x5427;&#xFF0C;&#x6211;&#x628A;&#x7B54;&#x6848;&#x90FD;&#x8F93;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x662F;&#x7684;&#xFF0C;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#xFF1A;</p>
+<pre><code>&#x662F;&#x7684;&#xFF0C;&#x6211;&#x5C06;&#x4F1A;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x4E0D;&#x7BA1;&#x6211;&#x662F;&#x5426;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;
+</code></pre><p>&#x8FD9;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF0C;&#x4E0D;&#x662F;&#x8BF4;&#x7C7B;&#x7684;&#x53D8;&#x91CF;&#x88AB;transient&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#x4EE5;&#x540E;&#x5C06;&#x4E0D;&#x80FD;&#x5E8F;&#x5217;&#x5316;&#x4E86;&#x5417;&#xFF1F;</p>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x5728;Java&#x4E2D;&#xFF0C;&#x5BF9;&#x8C61;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;&#x4E24;&#x79CD;&#x63A5;&#x53E3;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x82E5;&#x5B9E;&#x73B0;&#x7684;&#x662F;Serializable&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x6240;&#x6709;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x5C06;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#xFF0C;&#x82E5;&#x5B9E;&#x73B0;&#x7684;&#x662F;Externalizable&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4E1C;&#x897F;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x9700;&#x8981;&#x5728;writeExternal&#x65B9;&#x6CD5;&#x4E2D;&#x8FDB;&#x884C;&#x624B;&#x5DE5;&#x6307;&#x5B9A;&#x6240;&#x8981;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x4E0E;&#x662F;&#x5426;&#x88AB;transient&#x4FEE;&#x9970;&#x65E0;&#x5173;&#x3002;&#x56E0;&#x6B64;&#x7B2C;&#x4E8C;&#x4E2A;&#x4F8B;&#x5B50;&#x8F93;&#x51FA;&#x7684;&#x662F;&#x53D8;&#x91CF;content&#x521D;&#x59CB;&#x5316;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;null&#x3002; </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; ruheng.com 2017 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2020-01-06 18:30:01
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="copy.html" class="navigation navigation-prev " aria-label="Previous page: Java深拷贝和浅拷贝">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="finally-return.html" class="navigation navigation-next " aria-label="Next page: Java finally与return执行顺序">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Java transient关键字","level":"3.1.19","depth":2,"next":{"title":"Java finally与return执行顺序","level":"3.1.20","depth":2,"path":"java/basis/finally-return.md","ref":"java/basis/finally-return.md","articles":[]},"previous":{"title":"Java深拷贝和浅拷贝","level":"3.1.18","depth":2,"path":"java/basis/copy.md","ref":"java/basis/copy.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","search-plus@^0.0.11","github@^2.0.0","github-buttons@2.1.0","edit-link@^2.0.2","advanced-emoji@^0.2.1","anchors@^0.7.1","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","sectionx@^3.1.0","local-video@^1.0.1","favicon@^0.0.2"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © ruheng.com 2017","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/LRH1993/android_interview"},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"highlight":{},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"github-buttons":{"repo":"LRH1993/android_interview","types":["star"],"size":"small"},"expandable-chapters-small":{},"local-video":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":true,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/LRH1993/android_interview/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"search-plus":{}},"theme":"default","author":"ruheng","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"springcity","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"http://springcity.club"}},"gitbook":"3.2.3","description":"记录自己的成长"},"file":{"path":"java/basis/transient.md","mtime":"2020-01-06T10:30:01.982Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-08T09:19:28.531Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-local-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
